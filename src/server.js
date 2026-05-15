@@ -45,7 +45,9 @@ app.use((req, res) => {
 // Error handler middleware
 app.use((err, req, res, next) => {
   res.status(500).json({
+    status: 500,
     message: err.message,
+    error: 'Internal Server Error',
   });
 });
 
