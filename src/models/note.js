@@ -19,7 +19,6 @@ const noteSchema = new mongoose.Schema(
       type: String,
       enum: TAGS,
       default: 'Todo',
-      index: true,
     },
   },
   {
@@ -27,5 +26,7 @@ const noteSchema = new mongoose.Schema(
     versionKey: false,
   },
 );
+
+noteSchema.index({ tag: 1 });
 
 export const Note = mongoose.model('Note', noteSchema);
