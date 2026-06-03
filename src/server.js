@@ -1,8 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import { errors } from 'celebrate';
 
+import authRoutes from './routes/authRoutes.js';
 import notesRoutes from './routes/notesRoutes.js';
 
 import { connectMongoDB } from './db/connectMongoDB.js';
@@ -25,6 +27,10 @@ const startServer = async () => {
   app.use(cors());
 
   app.use(express.json());
+
+  app.use(cookieParser());
+
+  app.use('/auth', authRoutes);
 
   app.use(notesRoutes);
 
